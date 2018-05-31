@@ -33,6 +33,17 @@ while true; do
 #       p=$(ipfs name publish $h)
 #       echo $p
 
+
+    # pubsub
+    # make sure ipfs is run as
+    #ipfs daemon --enable-pubsub-experiment
+
+    chunk1=$(tail -n 2 test.m3u8 | head -n 1)
+    chunk2=$(tail -n 1 test.m3u8)
+    ipfs pubsub pub tvstream "$chunk1\n"
+    ipfs pubsub pub tvstream "$chunk2\n"
+
+
 #SCP Code
         scp test.m3u8 user@node2.e-mesh.net:/var/www/html/tv/stream.m3u8
 
