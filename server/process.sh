@@ -40,8 +40,8 @@ while true; do
 
     chunk1=$(tail -n 2 test.m3u8 | head -n 1)
     chunk2=$(tail -n 1 test.m3u8)
-    ipfs pubsub pub tvstream "$chunk1\n"
-    ipfs pubsub pub tvstream "$chunk2\n"
+    ipfs pubsub pub tvstream "$chunk1^"
+    ipfs pubsub pub tvstream "$chunk2^"
 
 
 #SCP Code
