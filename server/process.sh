@@ -39,7 +39,7 @@ if ! [ -z "$x" ]; then
 #       echo $p
 
 #SCP Code
-        scp test.m3u8 user@node2.e-mesh.net:/var/www/html/test.m3u8
+        scp test.m3u8 user@node2.e-mesh.net:/var/www/html/tv/stream.m3u8
   # Possible Test - Fore the gateway to grab a copy right away
 #       wget https://ipfs.io/ipfs/$h -o /dev/null -T 3 &
 fi
