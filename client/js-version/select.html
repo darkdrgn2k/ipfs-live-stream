@@ -1,0 +1,93 @@
+<html>
+<head>
+<script src="common.js"></script>
+<script>
+
+		var playlist=getQueryVariable("url");
+		
+        var l=Array();
+        var s=Array();
+        i=0;
+        l[i++]="http://rx14.co.uk/ipfs";
+        l[i++]="https://ipfs.io/ipfs";
+        l[i++]="https://gateway.ipfs.io/ipfs";
+        l[i++]="https://ipfs.infura.io/ipfs";
+        l[i++]="https://xmine128.tk/ipfs";
+        l[i++]="https://ipfs.jes.xxx/ipfs";
+        l[i++]="https://siderus.io/ipfs";
+        l[i++]="https://www.eternum.io/ipfs";
+        l[i++]="https://hardbin.com/ipfs";
+        l[i++]="https://ipfs.macholibre.org/ipfs";
+        l[i++]="https://ipfs.works/ipfs";
+        l[i++]="https://ipfs.work/ipfs";
+        l[i++]="https://ipfs.wa.hle.rs/ipfs";
+        l[i++]="https://upload.global/ipfs";
+        l[i++]="https://api.wisdom.sh/ipfs";
+        l[i++]="https://h.ipfs.io/ipfs";
+        l[i++]="http://h.groundupworks.com/ipfs";
+        l[i++]="http://167.99.186.237:8080/ipfs";
+        l[i++]="http://127.0.0.1:8080/ipfs";
+
+        function Test(url,index) {
+                s[index]=performance.now();
+                var xhttp = new XMLHttpRequest();
+         		xhttp.onreadystatechange = function() {
+                	if (this.readyState == 4 && this.status == 200) {
+	                        TestComplete(url,index,this.responseText);
+	                }
+    		    };
+
+        	xhttp.open("GET", url + "/Qmaisz6NMhDB51cCvNWa1GMS7LU1pAxdF4Ld6Ft9kZEP2a", true);
+	        xhttp.send();
+		}
+		
+        function CheckStream() {
+                var xhttp = new XMLHttpRequest();
+         		xhttp.onreadystatechange = function() {
+                	if (this.readyState == 4 && this.status == 200) {
+	                        PlaylistReady(playlist);
+	                }
+    		    };
+
+        	xhttp.open("GET", playlist, true);
+	        xhttp.send();
+		}		
+				
+
+	function TestComplete(url,index,what) {
+
+        var isvalid=0;
+        
+        if ( what == "Hello from IPFS Gateway Checker\n" ) {
+                var speed= performance.now() - s[index];
+                gwlist.innerHTML=gwlist.innerHTML + ("<a href='stream.html?gw=" + url + "&url=" + playlist + "'>" + url + "</a> ( " + speed  + " ms)<br>");
+        }
+	}
+	function PlaylistReady() {     
+        divStatus.innerHTML="Found"
+	}
+
+	
+</script>
+</head>
+<body>
+<style>
+body { text-align:center; }
+</style>
+<div id="gateway">
+  <p><img src="images/ipfs-logo.png" width="211" height="239"></p>
+  <h1>Live stream playlist is <div style="display:inline" id="status">being located</div></script>.</h1>
+  <h2>Select a content GateWay to use</h2>
+</div>
+<script>
+
+var gwlist=document.getElementById("gateway");
+var divStatus=document.getElementById("status");
+CheckStream();
+for (var a=0; a < i; a++) {
+Test(l[a],a);
+}
+
+</script>
+</body>
+</html>
