@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # title				: Next talk update for OBS
 # description		: Displays current and next talk in OBS
-# author			: DarkDRgn2k
+# author			: DarkDrgn2k
 # date				: 2018 06 26
 # version			: 0.1
 # usage				: python pyscript.py
@@ -19,13 +19,14 @@ except ImportError:
 
 working = True
 enabled = True
-now_playing = ''
 check_frequency = 300
 debug_mode = False
+
 source_title=""
 source_presenter=""
 source_time=""
 json_filename=""
+
 # ------------------------------------------------------------
 # OBS Script Functions
 # ------------------------------------------------------------
@@ -47,7 +48,7 @@ def script_defaults(settings):
 	obs.obs_data_set_default_string(settings, "source_presenter", source_presenter)
 	obs.obs_data_set_default_string(settings, "source_time", source_time)
 	obs.obs_data_set_default_string(settings, "json_filename", json_filename)
-	if debug_mode: print("defailts " + json_filename)
+	if debug_mode: print("defaults json_filename " + json_filename)
 		
 
 def script_description():
@@ -139,23 +140,25 @@ def update_content():
 	nextTalk=""
 	data=json.loads(data)
 	for value in data:
+	
+		#Format string from json into date/time for comparison
 		value["startTime"]=datetime.datetime.strptime(value["startTime"], '%Y-%m-%d %H:%M')
 		value["endTime"]=datetime.datetime.strptime(value["endTime"], '%Y-%m-%d %H:%M')
 		
+		#If no nextTalk set, set it to the first entry on the list
 		if nextTalk=="":
 			nextTalk=value
 			
-		#if debug_mode: print(value["startTime"])
-		#if debug_mode: print(datetime.datetime.now())
-		#if debug_mode: print(value["endTime"])
-		
+		# If Current Date is greater then value's start time but less then values end time, set it as current talk.
 		if value["startTime"] < datetime.datetime.now() < value["endTime"]:
 			currentTalk=value
 
-			
+		# If start time is less then the currently selected next talk 
+		# Meaning it is no longer next because it started
 		if nextTalk["startTime"] < datetime.datetime.now() :
 			nextTalk=value
 
+	#Update fields on OBS
 	settings = obs.obs_data_create()
 	obs.obs_data_set_string(settings, "text", currentTalk["title"])
 	source = obs.obs_get_source_by_name(source_title)
@@ -176,4 +179,3 @@ def update_content():
 	obs.obs_source_update(source, settings)
 	obs.obs_data_release(settings)
 	obs.obs_source_release(source)	
-
