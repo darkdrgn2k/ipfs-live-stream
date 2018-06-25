@@ -6,7 +6,6 @@
 # version			: 0.1
 # usage				: python pyscript.py
 # dependencies		: - Python 3.6 (https://www.python.org/)
-# 					: 	- requests (http://www.python-requests.org/)
 
 import json
 import obspython as obs
@@ -77,7 +76,7 @@ def script_properties():
 	obs.obs_properties_add_int(props, "check_frequency", "Check frequency", 150, 10000, 100 )
 	obs.obs_properties_add_text(props, "source_title", "Text Title", obs.OBS_TEXT_DEFAULT )
 	obs.obs_properties_add_text(props, "source_presenter", "Text Presenter", obs.OBS_TEXT_DEFAULT )
-	obs.obs_properties_add_text(props, "source_time", "Text Title", obs.OBS_TEXT_DEFAULT )
+	obs.obs_properties_add_text(props, "source_time", "Text Time", obs.OBS_TEXT_DEFAULT )
 	obs.obs_properties_add_text(props, "json_filename", "Text Title", obs.OBS_TEXT_DEFAULT )
 
 	
