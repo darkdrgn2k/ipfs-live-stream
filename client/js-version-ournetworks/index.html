@@ -6,11 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="src/video-js.min.css" rel="stylesheet">
+<link href="src-dvr/videojs-dvr.css" rel="stylesheet">
 <script src="common.js"></script>
 <script>
 var gw="http://ipfs-server.stream.tomesh.org:8080/";
+var originalgw="http://ipfs-server.stream.tomesh.org:8080/";	
 var ipnsm3u8="http://ipfs-server.stream.tomesh.org:8080/ipns/QmXUrpudDEfYdtGNESMTiaoVXDb6ghkuwHc3gvx9hbS7Lc";
-	
+if (getQueryVariable("url")) {
+	ipnsm3u8=getQueryVariable("url");
+}
+if (getQueryVariable("gw")) {
+	gw=getQueryVariable("gw");
+}	
 	//gw="https://ipfs.io/";
     //ipnsm3u8="https://ipfs.io/ipns/QmTVrsREgGQ7QN5wGhDJshAmPXPV4ZVcw7XQ9X7wDSwEWc";
 	
@@ -130,6 +137,7 @@ body {
 </video>
 <script src="src/video.js"></script> 
 <script src="src/videojs-contrib-hls.js"></script>
+<script src="src-dvr/videojs-dvr.js"></script> 
 <div class="header" id="StreamSelecter"> <img src="images/OurNetworks.svg" id="logo"/><br>
   <h1>Live Stream</h1>
   <div id="SelectStream">
@@ -154,6 +162,7 @@ body {
     videojs.options.html5.nativeVideoTracks=false	
 	videojs.options.hls.overrideNative = true;
     var live = videojs('live');
+	live.dvrseekbar();
     //live.dvrseekbar();	
 	live.ready(function() {
 /*	  this.src({
@@ -176,7 +185,7 @@ body {
 	  LoadStream();
 	  videojs.Hls.xhr.beforeRequest = function(options) {
         //Replace the gateway here
-		options.uri = options.uri.replace('https://ipfs.io/', gw);
+		options.uri = options.uri.replace(originalgw, gw);
 		  
 		  if (options.uri.indexOf("ipfs")) {
 		  	document.getElementById("loadingTitle").innerHTML="Locating content."
