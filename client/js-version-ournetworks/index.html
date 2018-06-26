@@ -8,11 +8,11 @@
 <link href="src/video-js.min.css" rel="stylesheet">
 <script src="common.js"></script>
 <script>
-var gw="http://192.168.40.228:8080/";
-var ipnsm3u8="http://192.168.40.228:8080/ipns/QmTVrsREgGQ7QN5wGhDJshAmPXPV4ZVcw7XQ9X7wDSwEWc";
+var gw="http://ipfs-server.stream.tomesh.org:8080/";
+var ipnsm3u8="http://ipfs-server.stream.tomesh.org:8080/ipns/QmXUrpudDEfYdtGNESMTiaoVXDb6ghkuwHc3gvx9hbS7Lc";
 	
-	gw="https://ipfs.io/";
-    ipnsm3u8="https://ipfs.io/ipns/QmTVrsREgGQ7QN5wGhDJshAmPXPV4ZVcw7XQ9X7wDSwEWc";
+	//gw="https://ipfs.io/";
+    //ipnsm3u8="https://ipfs.io/ipns/QmTVrsREgGQ7QN5wGhDJshAmPXPV4ZVcw7XQ9X7wDSwEWc";
 	
 </script>
 </head>
@@ -150,6 +150,8 @@ body {
   </div>
 </div>
 <script >
+    videojs.options.html5.nativeAudioTracks=false
+    videojs.options.html5.nativeVideoTracks=false	
 	videojs.options.hls.overrideNative = true;
     var live = videojs('live');
     //live.dvrseekbar();	
