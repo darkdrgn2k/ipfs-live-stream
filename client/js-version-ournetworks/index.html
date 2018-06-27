@@ -7,11 +7,13 @@
 
 <link href="src/video-js.min.css" rel="stylesheet">
 <link href="src-dvr/videojs-dvr.css" rel="stylesheet">
-<script src="common.js"></script>
 <script>
 var gw="http://ipfs-server.stream.tomesh.org:8080/";
 var originalgw="http://ipfs-server.stream.tomesh.org:8080/";	
-var ipnsm3u8="http://ipfs-server.stream.tomesh.org:8080/ipns/QmXUrpudDEfYdtGNESMTiaoVXDb6ghkuwHc3gvx9hbS7Lc";
+var ipnsm3u8="http://ipfs-server.stream.tomesh.org:8080/ipns/QmX6bK6EihYWXLTpXTX97vkdZJawBVx9BUMgvc8VH3M1kp";
+</script>
+<script src="common.js"></script>
+<script>
 if (getQueryVariable("url")) {
 	ipnsm3u8=getQueryVariable("url");
 }
@@ -172,7 +174,7 @@ body {
     });
 	function Internet() {
 	  live.src({
-	  	src: 'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8',
+	  	src: 'https://pit.stream.aseriesoftubez.com/hls/tomesh/ournetworks.m3u8',
 	  	type: 'application/x-mpegURL',
       });
 	  LoadStream();
